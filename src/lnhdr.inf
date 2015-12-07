@@ -1,0 +1,59 @@
+;----------------------------------------------------------------------------
+; lnhdr.inf - リンク作成シェル拡張 インストーラ/アンインストーラ
+; 対応OS  : Windows 2000/XP
+; 最終更新: 2002/12/12
+;----------------------------------------------------------------------------
+
+[Version]
+signature="$WINDOWS NT$"
+
+; インストール処理
+[DefaultInstall.ntx86]
+CopyFiles = lnhdr.Copy
+AddReg    = lnhdr.Reg, lnhdr.uninst.reg
+
+; アンインストール処理(再起動時にアンインストールをスケジュールする)
+[DefaultUninstall.ntx86]
+AddReg    = lnhdr.Uninstall.reg
+DelReg    = lnhdr.uninst.reg
+
+; 再起動時に行うアンインストール処理
+[AfterReboot]
+DelReg    = lnhdr.Uninstall.reg
+DelFiles  = lnhdr.Copy
+
+[SourceDisksNames]
+1="lnhdr", "", 1
+
+[SourceDisksFiles]
+lnhdr.dll        = 1
+lnhdr.inf        = 1
+
+[lnhdr.Copy]
+lnhdr.dll
+lnhdr.inf
+
+[DestinationDirs]
+lnhdr.Copy=11        ; winnt\system32
+
+; COM DLLを登録
+[lnhdr.Reg]
+HKLM,%SMWCV%\RunOnce\Setup, %AppName%,, "rundll32 lnhdr.dll,DllRegisterServer"
+
+; 再起動時に[AfterReboot]セクションを実行するように設定
+[lnhdr.Uninstall.reg]
+HKLM,%SMWCV%\RunOnce\Setup, %AppName%,, "rundll32 lnhdr.dll,DllUnregisterServer"
+HKLM,%SMWCV%\Run, %AppName%,, "rundll32 setupapi.dll,InstallHinfSection AfterReboot 132 lnhdr.inf"
+
+; アンインストール/アプリケーション情報の追加
+[lnhdr.uninst.reg]
+HKLM,%SMWCV%\Uninstall\lnhdr, DisplayName,, %AppName%
+HKLM,%SMWCV%\Uninstall\lnhdr, UninstallString,, "rundll32 setupapi.dll,InstallHinfSection DefaultUninstall 132 lnhdr.inf"
+HKLM,%SMWCV%\Uninstall\lnhdr, ProductID,, "--"
+HKLM,%SMWCV%\Uninstall\lnhdr, URLInfoAbout,, "http://suiten.to/kawasaki/"
+HKLM,%SMWCV%\Uninstall\lnhdr, Publisher,, "Takashi Kawasaki"
+HKLM,%SMWCV%\Uninstall\lnhdr, HelpLink,, "http://suiten.to/kawasaki/"
+
+[Strings]
+SMWCV    = "SOFTWARE\Microsoft\Windows\CurrentVersion"
+AppName = "リンク作成シェル拡張"

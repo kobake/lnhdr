@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lnhdr", "lnhdr.vcproj", "{DA834E24-AADF-4F4B-B71E-70B59C13C17C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "lnhdrInst", "lnhdrInst.vdproj", "{55A722F9-EF7D-46E2-9507-E1459F8D0408}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DA834E24-AADF-4F4B-B71E-70B59C13C17C} = {DA834E24-AADF-4F4B-B71E-70B59C13C17C}
+		{2C6440A9-5B0B-4E8A-9256-980175E96DBA} = {2C6440A9-5B0B-4E8A-9256-980175E96DBA}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "insthelp", "insthelp.vcproj", "{2C6440A9-5B0B-4E8A-9256-980175E96DBA}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{DA834E24-AADF-4F4B-B71E-70B59C13C17C}.Debug.ActiveCfg = Debug|Win32
+		{DA834E24-AADF-4F4B-B71E-70B59C13C17C}.Debug.Build.0 = Debug|Win32
+		{DA834E24-AADF-4F4B-B71E-70B59C13C17C}.Release.ActiveCfg = Release|Win32
+		{DA834E24-AADF-4F4B-B71E-70B59C13C17C}.Release.Build.0 = Release|Win32
+		{55A722F9-EF7D-46E2-9507-E1459F8D0408}.Debug.ActiveCfg = Debug
+		{55A722F9-EF7D-46E2-9507-E1459F8D0408}.Release.ActiveCfg = Release
+		{2C6440A9-5B0B-4E8A-9256-980175E96DBA}.Debug.ActiveCfg = Debug|Win32
+		{2C6440A9-5B0B-4E8A-9256-980175E96DBA}.Release.ActiveCfg = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,136 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'lnhdr'
+		'lnhdr.DLL'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}
+
+HKCR
+{
+	NoRemove '*'
+	{
+		NoRemove Shellex
+		{
+			NoRemove ContextMenuHandlers
+			{
+				ForceRemove LnhdrTools
+				{
+					'' = s '{6A055C64-6717-49df-9D23-A182BA4F5452}'
+				}
+			}
+		}
+	}
+
+	NoRemove Directory
+	{
+		NoRemove Shellex
+		{
+			NoRemove ContextMenuHandlers
+			{
+				ForceRemove LnhdrTools
+				{
+					'' = s '{6A055C64-6717-49df-9D23-A182BA4F5452}'
+				}
+			}
+
+			NoRemove CopyHookHandlers
+			{
+				ForceRemove 'SymlinkHdrExt' = s '{37DCA5D7-ADFB-4C7F-8556-CACA48F81BCF}'
+			}
+
+			NoRemove DragDropHandlers
+			{
+				ForceRemove SymlinkHdrExt = s '{37DCA5D7-ADFB-4C7F-8556-CACA48F81BCF}'
+			}
+			
+			NoRemove PropertySheetHandlers
+			{
+				ForceRemove {37DCA5D7-ADFB-4C7F-8556-CACA48F81BCF}
+				{
+				}
+			}
+		}
+	}
+
+	NoRemove Folder
+	{
+		NoRemove Shellex
+		{
+			NoRemove ColumnHandlers
+			{
+				ForceRemove {37DCA5D7-ADFB-4C7F-8556-CACA48F81BCF} = s 'SymlinkHdrExt'
+			}
+
+			NoRemove ContextMenuHandlers
+			{
+				ForceRemove LnhdrTools
+				{
+					'' = s '{6A055C64-6717-49df-9D23-A182BA4F5452}'
+				}
+			}
+
+			NoRemove DragDropHandlers
+			{
+				ForceRemove SymlinkHdrExt = s '{37DCA5D7-ADFB-4C7F-8556-CACA48F81BCF}'
+			}
+		}
+	}
+
+	NoRemove Drive
+	{
+		NoRemove Shellex
+		{
+			NoRemove DragDropHandlers
+			{
+				ForceRemove SymlinkHdrExt = s '{37DCA5D7-ADFB-4C7F-8556-CACA48F81BCF}'
+			}
+
+			NoRemove ContextMenuHandlers
+			{
+				ForceRemove LnhdrTools
+				{
+					'' = s '{6A055C64-6717-49df-9D23-A182BA4F5452}'
+				}
+			}
+		}
+	}
+
+}
+
+HKLM
+{
+	NoRemove SOFTWARE
+	{
+		NoRemove Microsoft
+		{
+			NoRemove Windows
+			{
+				NoRemove CurrentVersion
+				{
+					NoRemove Explorer
+					{
+						NoRemove ShellIconOverlayIdentifiers
+						{
+							ForceRemove 'lnhdr'
+							{
+								val '' = s '{37DCA5D7-ADFB-4C7F-8556-CACA48F81BCF}'
+							}
+						}
+					}
+					NoRemove 'Shell Extensions'
+					{
+						NoRemove Approved
+						{
+							val '{37DCA5D7-ADFB-4C7F-8556-CACA48F81BCF}' = s 'Folder hardlink deletion handler'
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,4 @@
+LIBRARY	insthelp
+
+EXPORTS
+	ShowWarning	@1
