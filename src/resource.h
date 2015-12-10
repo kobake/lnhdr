@@ -23,10 +23,7 @@
 #define IDS_STRING115                   115
 #define IDS_STRING116                   116
 #define IDS_STRING117                   117
-#define IDS_STRING118                   118
-#define IDS_STRING119                   119
 #define IDS_STRING120                   120
-#define IDS_STRING121                   121
 #define IDS_STRING122                   122
 #define IDS_STRING123                   123
 #define IDS_STRING124                   124
@@ -58,6 +55,16 @@
 #define IDS_SHOWRUNDLG_VERB             149
 #define IDS_STRING150                   150
 #define IDS_STRING151                   151
+
+#define IDS_MAKE_JUNCTION               152 // フォルダのみ有効 //
+#define IDS_MAKE_HARDLINK               153 // ファイルのみ有効 //
+#define IDS_MAKE_SYMLINK                154 // どちらでも有効 (Vista以降) //
+
+#define IDS_JUNCTION_NAME_PATTERN       155 // "%2\\%3_Junction(%1!d!)%4"
+#define IDS_HARDLINK_NAME_PATTERN       156 // "%2\\%3_Hardlink(%1!d!)%4"
+#define IDS_SYMLINK_NAME_PATTERN        157 // "%2\\%3_Symlink(%1!d!)%4"
+#define IDS_COPYMOVE_NAME_PATTERN       158 // "%2\\%3 (%1!d!)%4"
+
 #define IDC_GOBUTTON                    201
 #define IDI_ICON1                       201
 #define IDI_OVERLAY                     201

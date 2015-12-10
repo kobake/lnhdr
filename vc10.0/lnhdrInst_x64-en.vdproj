@@ -150,7 +150,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.0"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=131000"
                 }
@@ -262,7 +262,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Link Creation Shell Extension"
         "ProductCode" = "8:{4FDFFB5D-DBCB-455B-885C-BB8D9222B2A3}"
-        "PackageCode" = "8:{B3345012-D392-428A-A0E4-0C0C4C30F159}"
+        "PackageCode" = "8:{BAE84D17-56D6-4A61-B7A0-A19B019D816B}"
         "UpgradeCode" = "8:{52ADBE30-022B-4619-B2E9-C004D04ABE61}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

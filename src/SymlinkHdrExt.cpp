@@ -68,7 +68,7 @@ UINT CSymlinkHdrExt::CopyCallback(
 		{
 			// 現在のディレクトリにコピー/移動
 			// -> 名前を変えて続行する
-			CreateUniqueName(dest_fn, dest_dir, pszSrcFile, IDS_STRING121);
+			CreateUniqueName(dest_fn, dest_dir, pszSrcFile, IDS_COPYMOVE_NAME_PATTERN);
 		}
 
 		if(plan == IDYES) // 「はい」/問題なしのときのみ実行
@@ -385,11 +385,48 @@ HRESULT CSymlinkHdrExt::QueryContextMenu(
 		return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 	}
 
-	// メニュー項目の作成
-	UINT uidCmd = uidFirstCmd;
-	InsertMenu(hmenu, uMenuIndex++, MF_STRING | MF_BYPOSITION, uidCmd++,
-		rsprintf(IDS_STRING118)); // "リンクを作る(&L)"
+	// 対象アイテムが1個の場合、表示するメニュー項目を絞る.
+	// (複数個の場合は絞ってもキリが無いのであえて絞らない)
+	bool enableJunction = true;
+	bool enableHardlink = true;
+	bool enableSymlink = true;
+	wchar_t filename[MAX_PATH];
+	if(enumfile.getNumOfFiles() == 1 && enumfile.getNthFileName(0, filename)){
+		CheckTargetAttributes(
+			filename,
+			&enableJunction,
+			&enableHardlink,
+			&enableSymlink
+		);
+	}
 
+	// メニュー項目の作成.
+	wchar_t buf[1024];
+	UINT uidCmd = uidFirstCmd;
+
+	MENUITEMINFO mi = {0};
+	mi.cbSize = sizeof(mi);
+	mi.fMask = MIIM_STRING | MIIM_FTYPE | MIIM_ID | MIIM_STATE;
+	mi.fType = MFT_STRING;
+	mi.fState = MFS_ENABLED;
+	mi.dwTypeData = buf;
+	
+	wcscpy(buf, rsprintf(IDS_MAKE_JUNCTION)); // "ジャンクションを作る(&J)"
+	mi.wID = uidCmd++;
+	mi.fState = enableJunction ? MFS_ENABLED : MFS_GRAYED;
+	InsertMenuItem(hmenu, uMenuIndex++, TRUE, &mi);
+
+	wcscpy(buf, rsprintf(IDS_MAKE_HARDLINK)); // "ハードリンクを作る(&H)"
+	mi.wID = uidCmd++;
+	mi.fState = enableHardlink ? MFS_ENABLED : MFS_GRAYED;
+	InsertMenuItem(hmenu, uMenuIndex++, TRUE, &mi);
+
+	wcscpy(buf, rsprintf(IDS_MAKE_SYMLINK)); // "シンボリックリンクを作る(&L)"
+	mi.wID = uidCmd++;
+	mi.fState = enableSymlink ? MFS_ENABLED : MFS_GRAYED;
+	InsertMenuItem(hmenu, uMenuIndex++, TRUE, &mi);
+	
+	// 結果.
 	return MAKE_HRESULT(
 		SEVERITY_SUCCESS,
 		FACILITY_NULL,
@@ -400,23 +437,38 @@ HRESULT CSymlinkHdrExt::QueryContextMenu(
 // コマンド実行
 HRESULT CSymlinkHdrExt::InvokeCommand(LPCMINVOKECOMMANDINFO pInfo)
 {
-	if(pInfo->lpVerb != 0)
+	// リンクの種類.
+	int verb = (int)pInfo->lpVerb;
+	if(verb < 0 || verb >= 3){
 		return E_INVALIDARG;
+	}
+	LinkType linkType = (LinkType)verb;
 
+	// 対象ファイル列挙.
 	CEnumFiles enumfile(m_dataObj);
 	UINT uFiles = enumfile.getNumOfFiles();
 	if(uFiles < 0)
 		return E_INVALIDARG;
-
 	for(UINT u = 0; u < uFiles; u++)
 	{
 		wchar_t filename[MAX_PATH];
 		if(enumfile.getNthFileName(u, filename))
 		{
+			// リンク名の決定.
+			int namePattern = 0;
+			if(linkType == LINK_JUNCTION)namePattern = IDS_JUNCTION_NAME_PATTERN;
+			else if(linkType == LINK_HARDLINK)namePattern = IDS_HARDLINK_NAME_PATTERN;
+			else if(linkType == LINK_SYMLINK)namePattern = IDS_SYMLINK_NAME_PATTERN;
 			wchar_t linkname[MAX_PATH];
-			CreateUniqueName(linkname, m_targetFolder, filename,
-				IDS_STRING119 /* へのリンク */);
-			if(!CreateLink(linkname, filename))
+			CreateUniqueName(
+				linkname,
+				m_targetFolder,
+				filename,
+				namePattern
+			);
+
+			// リンク生成.
+			if(!CreateLink(linkname, filename, linkType))
 			{
 				showError(NULL, PathFindFileNameW(filename));
 				break;

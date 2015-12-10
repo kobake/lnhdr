@@ -185,6 +185,27 @@ static BOOL CreateJunction(const wchar_t *linkname, const wchar_t *targetFileNam
 	return TRUE;
 }
 
+// ターゲット属性のチェック.
+void CheckTargetAttributes(const wchar_t* target_, bool* enableJunction, bool* enableHardlink, bool* enableSymlink)
+{
+	WCHAR target[MAX_PATH];
+	wchar_t* filePart;
+
+	// Get target attributes.
+	if(!GetFullPathNameW(target_, MAX_PATH, target, &filePart))return;
+	DWORD dwAttrs = GetFileAttributesW(target);
+	if(dwAttrs == (DWORD)-1)return;
+
+	// Resolve type.
+	*enableJunction = *enableHardlink = *enableSymlink = true;
+	if(dwAttrs & FILE_ATTRIBUTE_DIRECTORY){
+		*enableHardlink = false; // ディレクトリの場合はハードリンク不可.
+	}
+	else{
+		*enableJunction = false; // ファイルの場合はジャンクション不可.
+	}
+}
+
 void CreateUniqueName(wchar_t *buffer, const wchar_t *dir, const wchar_t *src, int nResId)
 {
 	wchar_t fn[MAX_PATH], ext[20];
@@ -236,7 +257,7 @@ void CreateUniqueName(wchar_t *buffer, const wchar_t *dir, const wchar_t *src, i
 	}
 }
 
-BOOL CreateLink(const wchar_t *link_, const wchar_t *target_)
+BOOL CreateLink(const wchar_t *link_, const wchar_t *target_, LinkType linkType)
 {
 	WCHAR target[MAX_PATH];
 	WCHAR link[MAX_PATH];
@@ -256,18 +277,51 @@ BOOL CreateLink(const wchar_t *link_, const wchar_t *target_)
 	if(dwAttrs == (DWORD)-1)
 		return FALSE;
 
-	BOOL f;
-	if(dwAttrs & FILE_ATTRIBUTE_DIRECTORY)
+	// Resolve type.
+	bool isDir = ((dwAttrs & FILE_ATTRIBUTE_DIRECTORY) != 0);
+	if(linkType == LINK_AUTO)
 	{
-		f = CreateJunction(link, target);
+		if(GetSymlinkType(target) == FIT_SYMLINK)
+		{
+			linkType = LINK_SYMLINK;
+		}
+		else if(isDir)
+		{
+			linkType = LINK_JUNCTION;
+		}
+		else
+		{
+			linkType = LINK_HARDLINK;
+		}
+	}
+
+	// Link.
+	if(linkType == LINK_JUNCTION)
+	{
+		// ※ジャンクションはディレクトリのみ有効.
+		if(!isDir)return FALSE;
+		BOOL f = CreateJunction(link, target);
+		if(f) UpdateShell(link, true, FI_CREATED);
+		return f;
+	}
+	else if(linkType == LINK_HARDLINK)
+	{
+		// ※ハードリンクはファイルのみ有効.
+		if(isDir)return FALSE;
+		BOOL f = CreateHardLinkW(link, target, NULL);
+		if(f) UpdateShell(link, false, FI_CREATED);
+		return f;
+	}
+	else if(linkType == LINK_SYMLINK)
+	{
+		// ※シンボリックリンクは特に制限無し.
+		BOOL f = ::CreateSymbolicLinkW(link, target, isDir ? SYMBOLIC_LINK_FLAG_DIRECTORY : 0);
 		if(f) UpdateShell(link, true, FI_CREATED);
 		return f;
 	}
 	else
 	{
-		f = CreateHardLinkW(link, target, NULL);
-		if(f) UpdateShell(link, false, FI_CREATED);
-		return f;
+		return FALSE;
 	}
 }
 
@@ -401,7 +455,7 @@ bool SymlinkCopyMove(LPCTSTR pszSrcFile, LPCTSTR pszDestFile, bool fMove)
 	if(!GetLinkTargetPath(buffer, pszSrcFile))
 		return false;
 
-	bool f = (CreateLink(pszDestFile, buffer) != 0);
+	bool f = (CreateLink(pszDestFile, buffer, LINK_AUTO) != 0);
 
 	if(fMove)
 		Unlink(pszSrcFile);

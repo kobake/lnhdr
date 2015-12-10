@@ -164,16 +164,22 @@ BEGIN
     IDS_STRING115           "リンク数"
     IDS_STRING116           "ハードリンク数"
     IDS_STRING117           "<DIR>"
-    IDS_STRING118           "リンクを作る(&L)"
-    IDS_STRING119           "%2\\%3 へのリンク(%1!d!)%4"
     IDS_STRING120           "%1!c! ドライブ"
-    IDS_STRING121           "%2\\%3 (%1!d!)%4"
     IDS_STRING122           "%1 (%2!c!)"
     IDS_STRING123           "シンボリックリンク"
     IDS_STRING124           "マウントされていないボリュームにリンクされています。"
     IDS_STRING125           "ジャンクション(フォルダへのシンボリックリンク)"
     IDS_STRING126           "マウントポイント(ドライブへのシンボリックリンク)"
     IDS_ESPRESSOTOOLS       "ツール(&L)"
+    //
+    IDS_MAKE_JUNCTION       "ジャンクションを作る(&J)" // フォルダのみ有効 //
+    IDS_MAKE_HARDLINK       "ハードリンクを作る(&H)" // ファイルのみ有効 //
+    IDS_MAKE_SYMLINK        "シンボリックリンクを作る(&L)" // どちらでも有効 (Vista以降) //
+    //
+    IDS_JUNCTION_NAME_PATTERN    "%2\\%3_Junction(%1!d!)%4"
+    IDS_HARDLINK_NAME_PATTERN    "%2\\%3_Hardlink(%1!d!)%4"
+    IDS_SYMLINK_NAME_PATTERN     "%2\\%3_Symlink(%1!d!)%4"
+    IDS_COPYMOVE_NAME_PATTERN    "%2\\%3 (%1!d!)%4"
 END
 
 STRINGTABLE 
@@ -321,16 +327,22 @@ BEGIN
     IDS_STRING115           "Number of Links"
     IDS_STRING116           "Number of Hard Links"
     IDS_STRING117           "<DIR>"
-    IDS_STRING118           "Create &Link Here"
-    IDS_STRING119           "%2\\Link to %3 (%1!d!)%4"
     IDS_STRING120           "%1!c! Drive"
-    IDS_STRING121           "%2\\%3 (%1!d!)%4"
     IDS_STRING122           "%1 (%2!c!)"
     IDS_STRING123           "Symbolic Link"
     IDS_STRING124           "The link target is not mounted."
     IDS_STRING125           "Junction (Symbolic link to a folder)"
     IDS_STRING126           "Mount Point (Symbolic link to a drive)"
     IDS_ESPRESSOTOOLS       "Too&ls"
+    //
+    IDS_MAKE_JUNCTION       "Create &Junktion" // フォルダのみ有効 //
+    IDS_MAKE_HARDLINK       "Create &HardLink" // ファイルのみ有効 //
+    IDS_MAKE_SYMLINK        "Create Sym&Link" // どちらでも有効 (Vista以降) //
+    //
+    IDS_JUNCTION_NAME_PATTERN    "%2\\%3_Junction(%1!d!)%4"
+    IDS_HARDLINK_NAME_PATTERN    "%2\\%3_Hardlink(%1!d!)%4"
+    IDS_SYMLINK_NAME_PATTERN     "%2\\%3_Symlink(%1!d!)%4"
+    IDS_COPYMOVE_NAME_PATTERN    "%2\\%3 (%1!d!)%4"
 END
 
 STRINGTABLE 
