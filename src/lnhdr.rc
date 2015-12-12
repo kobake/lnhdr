@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Japanese resources
+// 日本語 (日本) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
-#ifdef _WIN32
 LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 #pragma code_page(932)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -42,8 +40,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,2006,1,15
- PRODUCTVERSION 1,52,0,0
+ FILEVERSION 1,2015,12,13
+ PRODUCTVERSION 1,53,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -60,12 +58,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "T.Kawasaki"
             VALUE "FileDescription", "Link Creation Shell Extension"
-            VALUE "FileVersion", "1.2006.1.15"
+            VALUE "FileVersion", "1.2015.12.13"
             VALUE "InternalName", "lnhdr.dll"
             VALUE "LegalCopyright", "(C) 2002-2005 T.Kawasaki.  All rights reserved."
             VALUE "OriginalFilename", "lnhdr.dll"
             VALUE "ProductName", "Link Creation Shell Extension"
-            VALUE "ProductVersion", "1.52.0.0"
+            VALUE "ProductVersion", "1.53.0.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -105,7 +103,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_PROPDLG1, DIALOG
     BEGIN
@@ -140,7 +138,7 @@ IDI_OVERLAY             ICON                    "icon1.ico"
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_PROJNAME            "lnhdr"
     IDS_STRING101           "'%1'は既に存在します。上書きしますか?"
@@ -156,7 +154,7 @@ BEGIN
     IDS_STRING111           "作成日時"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING112           "固定長作成日時"
     IDS_STRING113           "ファイルUID"
@@ -171,18 +169,28 @@ BEGIN
     IDS_STRING125           "ジャンクション(フォルダへのシンボリックリンク)"
     IDS_STRING126           "マウントポイント(ドライブへのシンボリックリンク)"
     IDS_ESPRESSOTOOLS       "ツール(&L)"
-    //
-    IDS_MAKE_JUNCTION       "ジャンクションを作る(&J)" // フォルダのみ有効 //
-    IDS_MAKE_HARDLINK       "ハードリンクを作る(&H)" // ファイルのみ有効 //
-    IDS_MAKE_SYMLINK        "シンボリックリンクを作る(&L)" // どちらでも有効 (Vista以降) //
-    //
-    IDS_JUNCTION_NAME_PATTERN    "%2\\%3_Junction(%1!d!)%4"
-    IDS_HARDLINK_NAME_PATTERN    "%2\\%3_Hardlink(%1!d!)%4"
-    IDS_SYMLINK_NAME_PATTERN     "%2\\%3_Symlink(%1!d!)%4"
-    IDS_COPYMOVE_NAME_PATTERN    "%2\\%3 (%1!d!)%4"
 END
 
-STRINGTABLE 
+STRINGTABLE
+BEGIN
+    IDS_SHOWABOUT           "このシェル拡張について(&A)..."
+    IDS_SHOWABOUT_HELP      "このシェル拡張についての情報を表示します。"
+    IDS_SHOWABOUT_VERB      "about"
+    IDS_SHOWRUNDLG          "オプションを指定して実行(&R)..."
+    IDS_SHOWRUNDLG_HELP     "現在選択されているアイテムに対して、オプションを指定します。"
+    IDS_SHOWRUNDLG_VERB     "runDialog"
+    IDS_STRING150           "オプションを指定して実行"
+    IDS_STRING151           "現在選択されているアイテムに対して、オプションを指定してください。"
+    IDS_MAKE_JUNCTION       "ジャンクションを作る(&J)"
+    IDS_MAKE_HARDLINK       "ハードリンクを作る(&H)"
+    IDS_MAKE_SYMLINK        "シンボリックリンクを作る(&L)"
+    IDS_JUNCTION_NAME_PATTERN "%2\\%3_Junction(%1!d!)%4"
+    IDS_HARDLINK_NAME_PATTERN "%2\\%3_Hardlink(%1!d!)%4"
+    IDS_SYMLINK_NAME_PATTERN "%2\\%3_Symlink(%1!d!)%4"
+    IDS_COPYMOVE_NAME_PATTERN "%2\\%3 (%1!d!)%4"
+END
+
+STRINGTABLE
 BEGIN
     IDS_ESPRESSOTOOLS_HELP  "高度なツール類"
     IDS_OPENLINKTARGET      "リンク先のフォルダを開く(&L)"
@@ -202,30 +210,16 @@ BEGIN
     IDS_COPYMD5_VERB        "copyMD5"
 END
 
-STRINGTABLE 
-BEGIN
-    IDS_SHOWABOUT           "このシェル拡張について(&A)..."
-    IDS_SHOWABOUT_HELP      "このシェル拡張についての情報を表示します。"
-    IDS_SHOWABOUT_VERB      "about"
-    IDS_SHOWRUNDLG          "オプションを指定して実行(&R)..."
-    IDS_SHOWRUNDLG_HELP     "現在選択されているアイテムに対して、オプションを指定します。"
-    IDS_SHOWRUNDLG_VERB     "runDialog"
-    IDS_STRING150           "オプションを指定して実行"
-    IDS_STRING151           "現在選択されているアイテムに対して、オプションを指定してください。"
-END
-
-#endif    // Japanese resources
+#endif    // 日本語 (日本) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// 英語 (米国) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -271,7 +265,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_PROPDLG1, DIALOG
     BEGIN
@@ -303,7 +297,7 @@ IDB_SPLASH              BITMAP                  "splash.bmp"
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_PROJNAME            "lnhdr"
     IDS_STRING101           "'%1' already exists, overwrite anyway?"
@@ -319,7 +313,7 @@ BEGIN
     IDS_STRING111           "Creation Date"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING112           "Creation Date (Fixed Length)"
     IDS_STRING113           "File UID"
@@ -334,18 +328,28 @@ BEGIN
     IDS_STRING125           "Junction (Symbolic link to a folder)"
     IDS_STRING126           "Mount Point (Symbolic link to a drive)"
     IDS_ESPRESSOTOOLS       "Too&ls"
-    //
-    IDS_MAKE_JUNCTION       "Create &Junktion" // フォルダのみ有効 //
-    IDS_MAKE_HARDLINK       "Create &HardLink" // ファイルのみ有効 //
-    IDS_MAKE_SYMLINK        "Create Sym&Link" // どちらでも有効 (Vista以降) //
-    //
-    IDS_JUNCTION_NAME_PATTERN    "%2\\%3_Junction(%1!d!)%4"
-    IDS_HARDLINK_NAME_PATTERN    "%2\\%3_Hardlink(%1!d!)%4"
-    IDS_SYMLINK_NAME_PATTERN     "%2\\%3_Symlink(%1!d!)%4"
-    IDS_COPYMOVE_NAME_PATTERN    "%2\\%3 (%1!d!)%4"
 END
 
-STRINGTABLE 
+STRINGTABLE
+BEGIN
+    IDS_SHOWABOUT           "&About..."
+    IDS_SHOWABOUT_HELP      "About this shell extension."
+    IDS_SHOWABOUT_VERB      "about"
+    IDS_SHOWRUNDLG          "&Run with Options..."
+    IDS_SHOWRUNDLG_HELP     "Show Run dialog for the selected files."
+    IDS_SHOWRUNDLG_VERB     "runDialog"
+    IDS_STRING150           "Run with Options"
+    IDS_STRING151           "Please modify the command line."
+    IDS_MAKE_JUNCTION       "Create &Junktion"
+    IDS_MAKE_HARDLINK       "Create &HardLink"
+    IDS_MAKE_SYMLINK        "Create Sym&Link"
+    IDS_JUNCTION_NAME_PATTERN "%2\\%3_Junction(%1!d!)%4"
+    IDS_HARDLINK_NAME_PATTERN "%2\\%3_Hardlink(%1!d!)%4"
+    IDS_SYMLINK_NAME_PATTERN "%2\\%3_Symlink(%1!d!)%4"
+    IDS_COPYMOVE_NAME_PATTERN "%2\\%3 (%1!d!)%4"
+END
+
+STRINGTABLE
 BEGIN
     IDS_ESPRESSOTOOLS_HELP  "Advanced Tools"
     IDS_OPENLINKTARGET      "Open &Link Target"
@@ -365,19 +369,7 @@ BEGIN
     IDS_COPYMD5_VERB        "copyMD5"
 END
 
-STRINGTABLE 
-BEGIN
-    IDS_SHOWABOUT           "&About..."
-    IDS_SHOWABOUT_HELP      "About this shell extension."
-    IDS_SHOWABOUT_VERB      "about"
-    IDS_SHOWRUNDLG          "&Run with Options..."
-    IDS_SHOWRUNDLG_HELP     "Show Run dialog for the selected files."
-    IDS_SHOWRUNDLG_VERB     "runDialog"
-    IDS_STRING150           "Run with Options"
-    IDS_STRING151           "Please modify the command line."
-END
-
-#endif    // English (U.S.) resources
+#endif    // 英語 (米国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
