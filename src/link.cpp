@@ -11,6 +11,8 @@
 #include "link.h"
 #include "rsprintf.h"
 #include "resource.h"
+#include <vector>
+#include <string>
 
 //
 // Undocumented FSCTL_SET_REPARSE_POINT structure definition
@@ -257,6 +259,23 @@ void CreateUniqueName(wchar_t *buffer, const wchar_t *dir, const wchar_t *src, i
 	}
 }
 
+EXTERN_C IMAGE_DOS_HEADER __ImageBase;
+
+std::wstring linkexepath()
+{
+	// DLLパス.
+	wchar_t path[_MAX_PATH];
+	::GetModuleFileNameW((HINSTANCE)&__ImageBase, path, _countof(path));
+
+	// DLLディレクトリパス.
+	wchar_t* p = wcsrchr(path, '\\');
+	if(p)*p = L'\0';
+
+	// lnhdrlink.exeパス.
+	wcscat(path, L"\\lnhdrlink.exe");
+	return path;
+}
+
 BOOL CreateLink(const wchar_t *link_, const wchar_t *target_, LinkType linkType)
 {
 	WCHAR target[MAX_PATH];
@@ -315,7 +334,23 @@ BOOL CreateLink(const wchar_t *link_, const wchar_t *target_, LinkType linkType)
 	else if(linkType == LINK_SYMLINK)
 	{
 		// ※シンボリックリンクは特に制限無し.
-		BOOL f = ::CreateSymbolicLinkW(link, target, isDir ? SYMBOLIC_LINK_FLAG_DIRECTORY : 0);
+
+		// lnhdrlink.exe
+		std::wstring path = linkexepath();
+
+		// 引数.
+		std::vector<wchar_t> vargs(wcslen(link) + wcslen(target) + 10);
+		wchar_t* args = &vargs[0];
+		swprintf(args, L"\"%ls\" \"%ls\"", link, target);
+
+		// lnhdrlink.exe実行.
+		::SHELLEXECUTEINFOW info = {0};
+		info.cbSize = sizeof(info);
+		info.lpVerb = L"open";
+		info.lpFile = path.c_str();
+		info.lpParameters = args;
+		BOOL f = ::ShellExecuteExW(&info);
+		//BOOL f = ::CreateSymbolicLinkW(link, target, isDir ? SYMBOLIC_LINK_FLAG_DIRECTORY : 0);
 		if(f) UpdateShell(link, true, FI_CREATED);
 		return f;
 	}
