@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_75BD4F8BEE5D4525BDB9F5DCB85C2904"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A7585CDFF8CF40F09D0B62A9A03B5863"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -41,6 +47,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_A7585CDFF8CF40F09D0B62A9A03B5863"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_75BD4F8BEE5D4525BDB9F5DCB85C2904"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -246,7 +258,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Link Creation Shell Extension"
         "ProductCode" = "8:{4FDFFB5D-DBCB-455B-885C-BB8D9222B2A3}"
-        "PackageCode" = "8:{CC8EDC76-20D1-4F0B-8AE9-6C0066E0EDD5}"
+        "PackageCode" = "8:{0EF1D814-9F9F-4479-91A0-EC0BF4F2C931}"
         "UpgradeCode" = "8:{52ADBE30-022B-4619-B2E9-C004D04ABE61}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -835,6 +847,34 @@
             "OutputConfiguration" = "8:Release|x64"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{DA834E24-AADF-4F4B-B71E-70B59C13C17C}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_75BD4F8BEE5D4525BDB9F5DCB85C2904"
+            {
+            "SourcePath" = "8:lnhdrlink\\obj\\x64\\Release\\lnhdrlink.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_04AB3A8BA21846568C46CBB1CC1B1DB1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:Release|x64"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{21115327-8A71-4D9C-9F1D-3200A300A042}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
