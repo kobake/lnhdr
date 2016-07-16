@@ -1,4 +1,4 @@
-# リンク作成シェル拡張 Ver.1.54 for Windows
+# リンク作成シェル拡張 Ver.1.55 for Windows
 - 最終更新 2016年 7月16日
 - 1999-2006 Programmed and Copyright by T.Kawasaki, all rights reserved.
 - 2015-2016 Changed by kobake.
