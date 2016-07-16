@@ -341,7 +341,7 @@ BOOL CreateLink(const wchar_t *link_, const wchar_t *target_, LinkType linkType)
 		// à¯êî.
 		std::vector<wchar_t> vargs(wcslen(link) + wcslen(target) + 10);
 		wchar_t* args = &vargs[0];
-		swprintf(args, L"\"%ls\" \"%ls\"", link, target);
+		_snwprintf(args, vargs.size(), L"\"%ls\" \"%ls\"", link, target);
 
 		// lnhdrlink.exeé¿çs.
 		::SHELLEXECUTEINFOW info = {0};

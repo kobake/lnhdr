@@ -15,7 +15,7 @@ namespace lnhdrlink
 
 		const uint ERROR_PRIVILEGE_NOT_HELD = 0x522;
 
-		[DllImport("kernel32.dll")]
+		[DllImport("kernel32.dll", CharSet = CharSet.Auto)]
 		static extern bool CreateSymbolicLink(
 			string lpSymlinkFileName,
 			string lpTargetFileName,

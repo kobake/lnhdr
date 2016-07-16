@@ -126,6 +126,7 @@ Global
 		{21115327-8A71-4D9C-9F1D-3200A300A042}.Release|Mixed Platforms.Build.0 = Release|x64
 		{21115327-8A71-4D9C-9F1D-3200A300A042}.Release|Win32.ActiveCfg = Release|x86
 		{21115327-8A71-4D9C-9F1D-3200A300A042}.Release|x64.ActiveCfg = Release|x64
+		{21115327-8A71-4D9C-9F1D-3200A300A042}.Release|x64.Build.0 = Release|x64
 		{21115327-8A71-4D9C-9F1D-3200A300A042}.Release|x86.ActiveCfg = Release|x86
 		{21115327-8A71-4D9C-9F1D-3200A300A042}.Release|x86.Build.0 = Release|x86
 		{7320BE3A-E8BC-4BBA-BC4D-4228A493E76E}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
