@@ -40,7 +40,7 @@
 - Windows 7 Home Premium 64bit
 - Windows 10 Pro (10.0.10586)
 
-※ Windows XP 以前の環境については [Ver.1.52](https://github.com/kobake/lnhdr/tree/master/bin/v1.52) をお使いください。
+※ Windows XP 以前の環境については Ver 1.52 をお使いください。
 
 ## 3. アンインストール
 コントロールパネルの「アプリケーションの追加と削除」から、「リンク作成シェル拡張 」を探しだし、アンインストールします。
