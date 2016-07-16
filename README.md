@@ -1,5 +1,5 @@
 # リンク作成シェル拡張 Ver.1.54 for Windows
-- 最終更新 2016年 1月21日
+- 最終更新 2016年 7月16日
 - 1999-2006 Programmed and Copyright by T.Kawasaki, all rights reserved.
 - 2015-2016 Changed by kobake.
 
@@ -38,6 +38,7 @@
 
 ## 2. 動作確認済OS
 - Windows 7 Home Premium 64bit
+- Windows 10 Pro (10.0.10586)
 
 ※ Windows XP 以前の環境については [Ver.1.52](https://github.com/kobake/lnhdr/tree/master/bin/v1.52) をお使いください。
 
@@ -45,6 +46,9 @@
 コントロールパネルの「アプリケーションの追加と削除」から、「リンク作成シェル拡張 」を探しだし、アンインストールします。
 
 ## 4. 履歴
+- Ver.1.55 2016/07/16
+    - シンボリックリンク作成時にファイル名にUNICODE文字が含まれているとうまく動かない問題を修正。
+
 - Ver.1.54 2016/01/21
     - UACが有効な環境でのシンボリックリンク作成時に管理者権限を要求するように対応。
 
